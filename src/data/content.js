@@ -814,7 +814,7 @@ export const sections = [
         type: 'wireframes',
         eyebrow: '資訊架構重整',
         heading: '全站 8 頁 wireframe 已完成，以下舉兩頁說明架構怎麼重整',
-        lede: '本階段 Mockup 先集中在決策主線（首頁、推薦結果、訂課交接），其餘頁面停在 wireframe——缺的是視覺，不是架構。這裡挑出最能說明資訊架構重整方式的兩頁，它們也直接回應了研究裡的兩個發現。',
+        lede: '本階段 Mockup 先集中在決策主線（首頁、推薦結果、訂課交接），其餘頁面停在 wireframe，這裡挑出最能說明資訊架構重整方式的兩頁，它們也直接回應了研究裡的兩個發現。',
         items: [
           {
             label: '地區頁',
