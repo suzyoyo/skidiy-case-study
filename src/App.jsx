@@ -50,14 +50,14 @@ export default function App() {
             className="scroll-mt-28 border-t border-sage/60 py-20 md:py-28"
           >
             <div className="section-shell">
-              <div data-reveal className="reveal max-w-prose">
+              <div data-reveal className="reveal">
                 <span className="eyebrow">
                   {section.index} — {section.label}
                 </span>
                 <h2 className="mt-3 text-3xl font-black leading-tight text-ink md:text-5xl">
                   {section.title}
                 </h2>
-                <p className="mt-5 text-base leading-relaxed text-teal-muted md:text-lg">
+                <p className="mt-5 max-w-prose text-base leading-relaxed text-teal-muted md:text-lg">
                   {section.lede}
                 </p>
               </div>

@@ -654,7 +654,7 @@ function Persona({ block }) {
               {block.segments.converged}
             </p>
           )}
-          <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-6 grid gap-4 sm:grid-cols-2">
             {block.segments.items.map((s) => (
               <li key={s.tag} className="rounded-2xl border border-sage p-5">
                 <h5 className="font-bold text-teal-deep">{s.tag}</h5>
@@ -688,6 +688,73 @@ function Principles({ block }) {
         ))}
       </ol>
       <Conclusion dark>{block.conclusion}</Conclusion>
+    </Slab>
+  )
+}
+
+/* ── 04 設計：目的導向的跨頁資訊排序 ───────────────────── */
+function IntentStrategy({ block }) {
+  return (
+    <Slab tone="dark">
+      <Eyebrow dark>{block.eyebrow}</Eyebrow>
+      <h3 className="mt-3 text-2xl font-black leading-tight md:text-3xl">
+        {block.heading}
+      </h3>
+      <p className="mt-3 max-w-prose leading-relaxed text-sage">
+        {block.lede}
+      </p>
+
+      <div className="mt-8 grid gap-4 md:grid-cols-2">
+        {[block.stable, block.adaptive].map((group) => (
+          <div key={group.label} className="rounded-2xl bg-teal-deep/70 p-6">
+            <h4 className="font-bold text-accent">{group.label}</h4>
+            <ul className="mt-3 space-y-2 text-sm leading-relaxed text-sage">
+              {group.items.map((item) => (
+                <li key={item} className="flex gap-2">
+                  <span aria-hidden className="text-accent">
+                    —
+                  </span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+
+      <h4 className="mt-8 text-sm font-bold text-mist">
+        四個目的的預設優先序
+      </h4>
+      <dl className="mt-4 grid gap-3 sm:grid-cols-2">
+        {block.priorities.map((item) => (
+          <div key={item.intent} className="rounded-xl bg-black/25 p-4">
+            <dt className="font-bold text-accent">{item.intent}</dt>
+            <dd className="mt-1 text-sm leading-relaxed text-sage">
+              {item.priority}
+            </dd>
+          </div>
+        ))}
+      </dl>
+
+      <div className="mt-8 grid gap-4 md:grid-cols-2">
+        {block.applications.map((item) => (
+          <div key={item.title} className="border-l-4 border-teal pl-4">
+            <h4 className="font-bold text-mist">{item.title}</h4>
+            <p className="mt-2 text-sm leading-relaxed text-sage">
+              {item.desc}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-8 rounded-2xl border border-accent/50 bg-black/30 p-6">
+        <span className="text-xs font-bold uppercase tracking-[0.15em] text-accent">
+          {block.gap.label}
+        </span>
+        <p className="mt-3 text-sm leading-relaxed text-mist">
+          {block.gap.text}
+        </p>
+      </div>
     </Slab>
   )
 }
@@ -1351,6 +1418,7 @@ const REGISTRY = {
   competitors: Competitors,
   persona: Persona,
   principles: Principles,
+  intentStrategy: IntentStrategy,
   scope: Scope,
   flow: Flow,
   systemflow: SystemFlow,
