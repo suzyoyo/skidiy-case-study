@@ -186,18 +186,21 @@ function Hero() {
         aria-hidden
         className="pointer-events-none absolute -right-40 -top-56 h-[620px] w-[620px] rounded-full bg-teal-deep/60"
       />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute right-40 top-24 h-20 w-20 rounded-full bg-accent"
-      />
       <div className="section-shell relative">
         <span className="text-xs font-bold uppercase tracking-[0.25em] text-sage">
           {meta.project}
         </span>
         <div className="mt-6 border-l-4 border-accent pl-6">
-          <h1 className="text-5xl font-black leading-[1.1] md:text-7xl">
-            {meta.title}
-          </h1>
+          {/* 橘圓跟著標題走，用 flex 而非絕對定位，換行寬度都不會跑掉 */}
+          <div className="flex items-center gap-5 md:gap-7">
+            <h1 className="text-5xl font-black leading-[1.1] md:text-7xl">
+              {meta.title}
+            </h1>
+            <span
+              aria-hidden
+              className="h-7 w-7 shrink-0 rounded-full bg-accent md:h-11 md:w-11"
+            />
+          </div>
           <p className="mt-4 text-xl font-bold md:text-2xl">{meta.subtitle}</p>
           <p className="mt-6 max-w-prose leading-relaxed text-sage">
             {meta.lede}
