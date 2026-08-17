@@ -714,8 +714,6 @@ export const sections = [
         tone: 'light',
         scroll: 560,
         scrollHint: '完整頁面，可在框內捲動',
-        footnote:
-          '設計假設｜提升入口顯著性與資訊氣味；下一步驗證四種意圖是否易懂，以及重疊需求如何選擇。',
       },
       {
         type: 'figure',
@@ -725,8 +723,6 @@ export const sections = [
         src: '/img/home-v2-map.jpg',
         alt: '首頁 V2「從地圖探索雪場」區塊：日本地圖標示各縣雪場數量，右側為分區清單',
         tone: 'light',
-        footnote:
-          '北海道 5 座、岩手 2 座、山形 1 座、新潟 14 座、長野 6 座；點擊區域可進入地區頁。這也回應客服信中「白馬村眾多雪場」的分類層級問題。',
       },
       {
         type: 'flowstep',
