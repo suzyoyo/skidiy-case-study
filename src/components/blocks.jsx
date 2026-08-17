@@ -742,7 +742,7 @@ function Scope({ block }) {
         </div>
       )}
 
-      <Conclusion>{block.conclusion}</Conclusion>
+      {block.conclusion && <Conclusion>{block.conclusion}</Conclusion>}
     </Slab>
   )
 }

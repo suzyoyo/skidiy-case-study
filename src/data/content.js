@@ -628,7 +628,6 @@ export const sections = [
             '治理原則：公開評價須具備驗證、申訴與仲裁後再上線',
           ],
         },
-        conclusion: '邊界不是逃避問題，而是讓不同系統各自承擔最適合的任務。',
       },
       {
         type: 'systemflow',
