@@ -1,5 +1,6 @@
 import RequirementTabs from './RequirementTabs'
 import ZoomableImage from './ZoomableImage'
+import Prototype from './Prototype'
 
 // 每個 block 都是一個獨立的敘事單元；深色 block 用 Slab 包起來做視覺分段。
 function Slab({ tone = 'light', children }) {
@@ -1333,6 +1334,7 @@ const REGISTRY = {
   systemflow: SystemFlow,
   compare: Compare,
   flowstep: FlowStep,
+  prototype: Prototype,
   compareFeature: CompareFeature,
   wireframes: Wireframes,
   validate: Validate,

@@ -725,6 +725,17 @@ export const sections = [
         tone: 'light',
       },
       {
+        type: 'prototype',
+        eyebrow: '互動原型',
+        heading: '實際走一次：從選定目的到加入比較',
+        lede: '靜態畫面只能證明每個狀態長什麼樣，證明不了狀態之間怎麼銜接。這裡可以自己點一次，看條件如何一路帶到訂課交接。',
+        steps: ['首頁選目的', '推薦結果', '加入比較', '對照表', '訂課交接'],
+        title: 'SKIDIY 官網改版互動原型',
+        embed: 'https://embed.figma.com/proto/rZ0Z8Flij3HDskW68K7zpu/SkiDIY-%E5%AE%98%E7%B6%B2%E6%94%B9%E7%89%88?node-id=2866-6206&scaling=scale-down-width&content-scaling=fixed&page-id=2119%3A14504&starting-point-node-id=2866%3A6206&embed-host=share',
+        link: 'https://www.figma.com/proto/rZ0Z8Flij3HDskW68K7zpu/SkiDIY-%E5%AE%98%E7%B6%B2%E6%94%B9%E7%89%88?node-id=2866-6206&scaling=scale-down-width&content-scaling=fixed&page-id=2119%3A14504&starting-point-node-id=2866%3A6206',
+        note: '從首頁 V2 開始，可自由點擊探索。',
+      },
+      {
         type: 'flowstep',
         from: '首頁｜意圖軌道',
         action: '選定目的後點「新手入門推薦雪場 →」',
