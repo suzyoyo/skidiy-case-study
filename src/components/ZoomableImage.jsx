@@ -29,7 +29,7 @@ export default function ZoomableImage({
       loading="lazy"
       width={width}
       height={height}
-      className={`w-full ${className}`}
+      className={`h-auto w-full ${className}`}
     />
   )
 

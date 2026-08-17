@@ -30,7 +30,10 @@ export const deliverables = {
       stage: '架構',
       items: [
         { name: '功能拆解', meta: '9 大功能區，分 MVP 必要／後續增強／訂課站範圍' },
-        { name: 'User Flow', meta: '三入口 → Handoff Drawer → 訂課站，含條件衝突處理' },
+        {
+          name: 'User Flow',
+          meta: '三入口 → 官網訂課條件 Drawer → 訂課站，含條件衝突處理',
+        },
       ],
     },
     {
@@ -165,12 +168,16 @@ export const sections = [
           {
             label: '教練團隊頁',
             src: '/img/old-coaches.jpg',
+            width: 1440,
+            height: 1400,
             alt: 'SKIDIY 原網站教練團隊頁：教練以無分類的圖卡網格連續平鋪',
             note: '教練以無分類的網格連續平鋪，只標示 Ski／Snowboard，沒有語言、程度或雪場的篩選維度。',
           },
           {
             label: '雪場資訊頁',
             src: '/img/old-resort.jpg',
+            width: 1440,
+            height: 1400,
             alt: 'SKIDIY 原網站雪場資訊頁：單一雪場側欄有十餘個章節，內容以長篇文字鋪陳',
             note: '單一雪場拆成十餘個章節的長文，關鍵差異埋在段落裡，無法橫向比較。',
           },
@@ -179,22 +186,22 @@ export const sections = [
     ],
   },
 
-  // ── 02 需求盤點 ──────────────────────────────────────────
+  // ── 02 專案起點 ──────────────────────────────────────────
   {
     id: 'requirements',
     index: '02',
-    label: '需求盤點',
-    eyebrow: '需求盤點',
-    title: '初始需求先定義方向，研究再決定優先順序',
-    lede: '這些是專案起點，不直接等同於使用者洞察。',
+    label: '專案起點',
+    eyebrow: '初始方向・待驗證假設',
+    title: '先拆解決策所需能力，再用研究驗證優先順序',
+    lede: '研究前，先依原站現況與專案目標，將「幫助新手做決定」拆成四個待驗證方向。',
     blocks: [
       {
         type: 'tabs',
         tabs: [
           {
             key: 'existing',
-            label: '既有需求',
-            caption: '專案起點｜四個待處理的方向',
+            label: '初始方向',
+            caption: '研究前假設｜四個決策能力',
             items: [
               {
                 no: '01',
@@ -220,7 +227,7 @@ export const sections = [
           },
           {
             key: 'research',
-            label: '研究驗證方向',
+            label: '研究收斂結果',
             caption: '洞察收斂｜三個設計問題，串起同一條決策路徑',
             items: [
               {
@@ -564,6 +571,8 @@ export const sections = [
         eyebrow: '顧客旅程',
         caption: '完整焦慮橫跨選擇、預約與預約後；本階段只切一段來解',
         src: '/img/journey.png',
+        width: 1840,
+        height: 540,
         alt: '顧客旅程六階段，前三段為本階段設計範圍；圖中已標示官網負責與後續服務的分工',
         tone: 'dark',
       },
@@ -577,7 +586,7 @@ export const sections = [
     label: '設計方案',
     eyebrow: '設計原則・MVP・設計方案',
     title: '在正確的時間，給足夠做下一步決定的資訊',
-    lede: '每個頁面都回答一個問題，並讓下一步保持可見。',
+    lede: '將研究收斂出的三個問題，轉化為可理解、可比較，也能繼續前進的決策路徑。',
     blocks: [
       {
         type: 'principles',
@@ -605,7 +614,6 @@ export const sections = [
         type: 'scope',
         eyebrow: 'MVP 與範圍',
         heading: '補完整核心體驗，不補完整網站',
-        lede: '完成度以「是否能從需求走到訂課交接」判斷，而不是頁面數量。',
         inScope: {
           label: '官網 diy.ski｜本階段設計',
           items: [
@@ -633,8 +641,8 @@ export const sections = [
       {
         type: 'systemflow',
         eyebrow: '新核心流程',
-        heading: '三個入口，一個交接點',
-        lede: '推薦不是單一路徑。無論從推薦、直接搜尋或雪場／教練頁進來，都匯流到同一個 Handoff Drawer，由它負責把條件交給訂課站。',
+        heading: '三個入口，匯流到官網內的訂課條件確認',
+        lede: '推薦不是單一路徑。無論從推薦、直接搜尋或雪場／教練頁進來，都先在官網內確認、修改並保存條件，再將資料帶入既有訂課站。',
         lanes: [
           {
             name: '官網 diy.ski',
@@ -650,8 +658,8 @@ export const sections = [
             ],
           },
           {
-            name: '共用 Handoff Drawer',
-            role: '本次改版的關鍵接點',
+            name: '官網內｜訂課條件確認',
+            role: '位於 diy.ski 的條件確認與銜接介面',
             tone: 'accent',
             decision: {
               merge: '合併入口與既有條件',
@@ -674,7 +682,7 @@ export const sections = [
           },
         ],
         conclusion:
-          '官網只顯示初步供給，不承諾也不鎖定即時時段；條件以標準化 schema 與 handoff ID 傳給訂課站，連結失敗或條件過期時保留內容並可重試。',
+          '這個 Drawer 位於官網內，不是另一個網站。官網只顯示初步供給；確認後再以標準化 schema 與 handoff ID 將條件傳給訂課站，連結失敗或條件過期時保留內容並可重試。',
       },
       {
         type: 'compare',
@@ -707,7 +715,7 @@ export const sections = [
         type: 'figure',
         eyebrow: '首頁完整頁面',
         caption: '第二版首頁的完整節奏',
-        lede: '從意圖軌道進入後，往下依序是地圖探索雪場、攻略內容與教練介紹——每一段都在回答「我還需要知道什麼才敢往下一步」。',
+        lede: '從意圖軌道進入後，往下依序是地圖探索雪場、攻略內容與教練介紹——每一段都在回答「我還需要知道什麼？才能前往下一步」。',
         src: '/img/page-home-v2.jpg',
         width: 1000,
         height: 2581,
@@ -722,6 +730,8 @@ export const sections = [
         caption: '把地理脈絡放回首頁，不必離站也能建立位置概念',
         lede: '對應研究發現：受測者「只看雪場名稱完全沒概念」，離站用 Google Maps 比較距離與路線。首頁以地圖分區呈現各縣雪場數量與名稱，讓「在哪裡」在進入比較之前就成立。',
         src: '/img/home-v2-map.jpg',
+        width: 1200,
+        height: 606,
         alt: '首頁 V2「從地圖探索雪場」區塊：日本地圖標示各縣雪場數量，右側為分區清單',
         tone: 'light',
       },
@@ -738,8 +748,8 @@ export const sections = [
         caption: '結果頁不只給答案，也讓使用者理解與比較',
         lede: '推薦理由、接近選項、教練資訊與雪場比較，被放在同一個決策脈絡裡。',
         src: '/img/page-results.jpg',
-        width: 1000,
-        height: 3220,
+        width: 1272,
+        height: 4096,
         alt: '推薦結果頁完整頁面：推薦雪場卡片、只差一項的選擇、也適合你的教練、比較雪場',
         tone: 'light',
         scroll: 520,
@@ -778,8 +788,8 @@ export const sections = [
           {
             label: '逐項對照表',
             src: '/img/compare-table.jpg',
-            width: 1200,
-            height: 1379,
+            width: 1460,
+            height: 1864,
             alt: '比較雪場頁面：富良野 VS 留壽都，依交通、雪質與雪量、初學者友善、親子設施、住宿選擇、夜滑、雪票 CP 值逐項並列，底部為兩個預約課程按鈕',
             scroll: 560,
             note: '捲到底可看到「預約富良野課程／預約留壽都課程」——比較完就能直接行動。',
@@ -871,7 +881,7 @@ export const sections = [
               desc: '推薦曝光、雪場查看、比較、教練查看與雪場 → 教練轉換',
             },
             {
-              stage: 'Handoff Drawer',
+              stage: '官網訂課條件 Drawer',
               desc: '開啟率、條件修改率、供給更新成功率',
             },
             { stage: '跨站交接', desc: '到達率、帶入條件有效率與交接失敗率' },
@@ -918,7 +928,7 @@ export const sections = [
             no: '02',
             when: '官網改版上線',
             title: '用實際流量驗證決策品質',
-            desc: '以先前訂好的漏斗指標觀察真實使用者：雙入口的使用比例、比較功能的採用率、Handoff Drawer 的條件帶入成功率與跨站交接失敗率。',
+            desc: '以先前訂好的漏斗指標觀察真實使用者：雙入口的使用比例、比較功能的採用率、官網訂課條件 Drawer 的帶入成功率與跨站交接失敗率。',
             items: [
               '入口使用與完成率',
               '比較功能採用率',

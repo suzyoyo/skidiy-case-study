@@ -25,8 +25,8 @@ export default function PresenterPanel({
       aria-hidden={!open}
       aria-label="講者備註"
       className={`fixed z-30 bg-ink text-mist shadow-2xl transition-transform duration-300 ease-out
-        inset-x-0 bottom-0 max-h-[52vh] overflow-y-auto rounded-t-2xl
-        lg:inset-y-0 lg:left-auto lg:right-0 lg:bottom-auto lg:max-h-none lg:w-[360px] lg:rounded-none lg:rounded-l-2xl
+        inset-x-0 bottom-0 max-h-[52vh] overflow-y-auto overscroll-contain rounded-t-2xl
+        lg:inset-y-0 lg:left-auto lg:right-0 lg:max-h-none lg:w-[360px] lg:rounded-none lg:rounded-l-2xl
         ${open ? 'translate-y-0 lg:translate-x-0' : 'translate-y-full lg:translate-y-0 lg:translate-x-full'}`}
     >
       <div className="sticky top-0 flex items-center justify-between gap-3 border-b border-white/10 bg-ink px-6 py-4 lg:pt-24">

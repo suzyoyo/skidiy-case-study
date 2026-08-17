@@ -190,6 +190,8 @@ function Evidence({ block }) {
             <ZoomableImage
               src={item.src}
               alt={item.alt}
+              width={item.width}
+              height={item.height}
               caption={item.label}
               frame="bg-white"
             />
@@ -315,7 +317,7 @@ function Signals({ block }) {
         {block.heading}
       </h3>
 
-      <div className="mt-10 grid gap-8 lg:grid-cols-2">
+      <div className="mt-10 grid items-start gap-8 lg:grid-cols-2">
         <div className="rounded-2xl bg-teal-deep/70 p-6">
           <span className="text-xs font-bold text-sage">
             {block.quote.label}
@@ -698,9 +700,11 @@ function Scope({ block }) {
       <h3 className="mt-3 text-2xl font-black leading-tight text-ink md:text-3xl">
         {block.heading}
       </h3>
-      <p className="mt-3 max-w-prose leading-relaxed text-teal-muted">
-        {block.lede}
-      </p>
+      {block.lede && (
+        <p className="mt-3 max-w-prose leading-relaxed text-teal-muted">
+          {block.lede}
+        </p>
+      )}
 
       <div className="mt-8 grid gap-6 md:grid-cols-[1.2fr_auto_1fr] md:items-center">
         <div className="rounded-2xl bg-white p-6">
@@ -858,7 +862,7 @@ function SystemFlow({ block }) {
           </ul>
         </Lane>
 
-        <Arrow label="標準化 schema ＋ handoff ID" />
+        <Arrow label="跨站傳遞｜標準化 schema ＋ handoff ID" />
 
         <Lane name={booking.name} role={booking.role}>
           <div className="flex flex-wrap items-center gap-2">
@@ -969,8 +973,8 @@ function Compare({ block }) {
         <p className="mt-4 text-xs text-teal">⤢ {block.zoomHint}</p>
       )}
       <div className="mt-8 grid gap-8 lg:grid-cols-2">
-        <Panel data={block.before} accent />
-        <Panel data={block.after} />
+        <Panel data={block.before} />
+        <Panel data={block.after} accent />
       </div>
       {block.conclusion && <Conclusion>{block.conclusion}</Conclusion>}
 

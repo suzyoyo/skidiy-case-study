@@ -22,7 +22,7 @@ export default function RequirementTabs({ block }) {
     <div>
       <div
         role="tablist"
-        aria-label="需求盤點"
+        aria-label="專案起點"
         onKeyDown={onKeyDown}
         className="inline-flex rounded-full border border-sage bg-white/70 p-1"
       >
