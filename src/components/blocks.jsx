@@ -1,7 +1,5 @@
-import { useState } from 'react'
 import RequirementTabs from './RequirementTabs'
-import Lightbox from './Lightbox'
-import { asset } from '../lib/asset'
+import ZoomableImage from './ZoomableImage'
 
 // 每個 block 都是一個獨立的敘事單元；深色 block 用 Slab 包起來做視覺分段。
 function Slab({ tone = 'light', children }) {
@@ -126,30 +124,17 @@ function Figure({ block }) {
           ↕ {block.scrollHint}
         </p>
       )}
-      {block.scroll ? (
-        <div
-          style={{ height: block.scroll }}
-          className="mt-6 overflow-y-auto rounded-2xl border border-sage bg-white"
-        >
-          <img
-            src={asset(block.src)}
-            alt={block.alt}
-            loading="lazy"
-            width={block.width}
-            height={block.height}
-            className="w-full"
-          />
-        </div>
-      ) : (
-        <img
-          src={asset(block.src)}
+      <div className={block.scroll ? 'mt-6' : 'mt-8'}>
+        <ZoomableImage
+          src={block.src}
           alt={block.alt}
-          loading="lazy"
           width={block.width}
           height={block.height}
-          className="mt-8 w-full rounded-2xl"
+          caption={block.caption}
+          scroll={block.scroll}
+          frame={dark ? 'bg-white' : 'border border-sage bg-white'}
         />
-      )}
+      </div>
       {block.footnote && (
         <div className="mt-5 space-y-2">
           {[].concat(block.footnote).map((line) => (
@@ -185,11 +170,11 @@ function Evidence({ block }) {
                 {item.label}
               </span>
             </figcaption>
-            <img
-              src={asset(item.src)}
+            <ZoomableImage
+              src={item.src}
               alt={item.alt}
-              loading="lazy"
-              className="w-full rounded-xl bg-white"
+              caption={item.label}
+              frame="bg-white"
             />
             <p className="mt-3 text-sm leading-relaxed text-sage">
               {item.note}
@@ -919,9 +904,7 @@ function Arrow({ label }) {
 
 /* ── 04 設計：首頁 V1 → V2 ─────────────────────────────── */
 function Compare({ block }) {
-  const [zoom, setZoom] = useState(null)
-
-  const Panel = ({ data, accent, onZoom }) => (
+  const Panel = ({ data, accent }) => (
     <div>
       <div
         className={`border-l-4 pl-4 ${accent ? 'border-accent' : 'border-teal'}`}
@@ -939,24 +922,15 @@ function Compare({ block }) {
           ))}
         </ul>
       </div>
-      <button
-        type="button"
-        onClick={() => onZoom(data)}
-        aria-label={`放大檢視 ${data.tag} ${data.label}`}
-        className="group relative mt-5 block w-full overflow-hidden rounded-2xl border border-sage bg-white"
-      >
-        <img
-          src={asset(data.src)}
+      <div className="mt-5">
+        <ZoomableImage
+          src={data.src}
           alt={data.alt}
-          loading="lazy"
           width={data.width}
           height={data.height}
-          className="w-full"
+          caption={`${data.tag}｜${data.label}`}
         />
-        <span className="absolute bottom-3 right-3 rounded-full bg-ink/85 px-3 py-1.5 text-xs font-bold text-mist opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
-          點擊放大 ⤢
-        </span>
-      </button>
+      </div>
       {data.note && (
         <p className="mt-3 text-sm leading-relaxed text-teal-muted">
           {data.note}
@@ -978,19 +952,11 @@ function Compare({ block }) {
         <p className="mt-4 text-xs text-teal">⤢ {block.zoomHint}</p>
       )}
       <div className="mt-8 grid gap-8 lg:grid-cols-2">
-        <Panel data={block.before} accent onZoom={setZoom} />
-        <Panel data={block.after} onZoom={setZoom} />
+        <Panel data={block.before} accent />
+        <Panel data={block.after} />
       </div>
       {block.conclusion && <Conclusion>{block.conclusion}</Conclusion>}
 
-      {zoom && (
-        <Lightbox
-          src={asset(zoom.src)}
-          alt={zoom.alt}
-          caption={`${zoom.tag}｜${zoom.label}`}
-          onClose={() => setZoom(null)}
-        />
-      )}
     </Slab>
   )
 }
@@ -1053,30 +1019,15 @@ function CompareFeature({ block }) {
             <figcaption className="mb-3 inline-block rounded-full bg-accent px-3 py-1 text-xs font-bold text-white">
               {f.label}
             </figcaption>
-            {f.scroll ? (
-              <div
-                style={{ height: f.scroll }}
-                className="overflow-y-auto rounded-xl bg-white"
-              >
-                <img
-                  src={asset(f.src)}
-                  alt={f.alt}
-                  loading="lazy"
-                  width={f.width}
-                  height={f.height}
-                  className="w-full"
-                />
-              </div>
-            ) : (
-              <img
-                src={asset(f.src)}
-                alt={f.alt}
-                loading="lazy"
-                width={f.width}
-                height={f.height}
-                className="w-full rounded-xl bg-white"
-              />
-            )}
+            <ZoomableImage
+              src={f.src}
+              alt={f.alt}
+              width={f.width}
+              height={f.height}
+              caption={f.label}
+              scroll={f.scroll}
+              frame="bg-white"
+            />
             {f.note && (
               <p className="mt-3 text-sm leading-relaxed text-sage">{f.note}</p>
             )}
@@ -1129,14 +1080,14 @@ function Wireframes({ block }) {
 
             {/* wireframe 很長，固定高度並可獨立捲動；
                 高度寫死而非 max-h，圖片還沒載入時才不會塌陷造成版面跳動 */}
-            <div className="mt-4 h-[420px] overflow-y-auto rounded-xl border border-sage bg-white">
-              <img
-                src={asset(item.src)}
+            <div className="mt-4">
+              <ZoomableImage
+                src={item.src}
                 alt={item.alt}
-                loading="lazy"
                 width={item.width}
                 height={item.height}
-                className="w-full"
+                caption={item.label}
+                scroll={420}
               />
             </div>
 
