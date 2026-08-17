@@ -1,4 +1,6 @@
+import { useState } from 'react'
 import RequirementTabs from './RequirementTabs'
+import Lightbox from './Lightbox'
 import { asset } from '../lib/asset'
 
 // 每個 block 都是一個獨立的敘事單元；深色 block 用 Slab 包起來做視覺分段。
@@ -912,7 +914,9 @@ function Arrow({ label }) {
 
 /* ── 04 設計：首頁 V1 → V2 ─────────────────────────────── */
 function Compare({ block }) {
-  const Panel = ({ data, accent }) => (
+  const [zoom, setZoom] = useState(null)
+
+  const Panel = ({ data, accent, onZoom }) => (
     <div>
       <div
         className={`border-l-4 pl-4 ${accent ? 'border-accent' : 'border-teal'}`}
@@ -930,7 +934,12 @@ function Compare({ block }) {
           ))}
         </ul>
       </div>
-      <div className="mt-5 h-[460px] overflow-y-auto rounded-2xl border border-sage bg-white">
+      <button
+        type="button"
+        onClick={() => onZoom(data)}
+        aria-label={`放大檢視 ${data.tag} ${data.label}`}
+        className="group relative mt-5 block w-full overflow-hidden rounded-2xl border border-sage bg-white"
+      >
         <img
           src={asset(data.src)}
           alt={data.alt}
@@ -939,7 +948,10 @@ function Compare({ block }) {
           height={data.height}
           className="w-full"
         />
-      </div>
+        <span className="absolute bottom-3 right-3 rounded-full bg-ink/85 px-3 py-1.5 text-xs font-bold text-mist opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
+          點擊放大 ⤢
+        </span>
+      </button>
       {data.note && (
         <p className="mt-3 text-sm leading-relaxed text-teal-muted">
           {data.note}
@@ -957,15 +969,54 @@ function Compare({ block }) {
       <p className="mt-3 max-w-prose leading-relaxed text-teal-muted">
         {block.lede}
       </p>
-      {block.scrollHint && (
-        <p className="mt-4 text-xs text-teal">↕ {block.scrollHint}</p>
+      {block.zoomHint && (
+        <p className="mt-4 text-xs text-teal">⤢ {block.zoomHint}</p>
       )}
       <div className="mt-8 grid gap-8 lg:grid-cols-2">
-        <Panel data={block.before} accent />
-        <Panel data={block.after} />
+        <Panel data={block.before} accent onZoom={setZoom} />
+        <Panel data={block.after} onZoom={setZoom} />
       </div>
-      <Conclusion>{block.conclusion}</Conclusion>
+      {block.conclusion && <Conclusion>{block.conclusion}</Conclusion>}
+
+      {zoom && (
+        <Lightbox
+          src={asset(zoom.src)}
+          alt={zoom.alt}
+          caption={`${zoom.tag}｜${zoom.label}`}
+          onClose={() => setZoom(null)}
+        />
+      )}
     </Slab>
+  )
+}
+
+/* ── 04 設計：動線接點（頁面之間的轉場，刻意不用 Slab） ── */
+function FlowStep({ block }) {
+  return (
+    <div className="mx-auto max-w-3xl px-2 py-2 text-center">
+      <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2">
+        <span className="rounded-full border border-sage bg-white px-4 py-1.5 text-sm font-bold text-teal-deep">
+          {block.from}
+        </span>
+        <span aria-hidden className="text-lg text-accent">
+          →
+        </span>
+        <span className="rounded-full bg-accent px-4 py-1.5 text-sm font-bold text-white">
+          {block.action}
+        </span>
+        <span aria-hidden className="text-lg text-accent">
+          →
+        </span>
+        <span className="rounded-full border border-sage bg-white px-4 py-1.5 text-sm font-bold text-teal-deep">
+          {block.to}
+        </span>
+      </div>
+      {block.note && (
+        <p className="mx-auto mt-4 max-w-prose text-sm leading-relaxed text-teal-muted">
+          {block.note}
+        </p>
+      )}
+    </div>
   )
 }
 
@@ -1325,6 +1376,7 @@ const REGISTRY = {
   flow: Flow,
   systemflow: SystemFlow,
   compare: Compare,
+  flowstep: FlowStep,
   compareFeature: CompareFeature,
   wireframes: Wireframes,
   validate: Validate,
