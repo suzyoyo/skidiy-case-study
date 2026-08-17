@@ -747,7 +747,6 @@ export const sections = [
         tone: 'light',
         scroll: 520,
         scrollHint: '完整頁面，可在框內捲動看完整段決策路徑',
-        footnote: '解釋，而非排名｜適合原因・接近選項・比較依據',
       },
       {
         type: 'compareFeature',
