@@ -45,7 +45,7 @@ export const deliverables = {
           meta: 'Foundations 5 項 ＋ 元件 11 個 ＋ 4 種斷點（1600／1440／768／390）',
         },
         {
-          name: '高保真 Mockup',
+          name: 'Mockup',
           meta: '首頁 V1／V2、推薦結果、相關文章，各含桌機與手機',
         },
       ],
@@ -72,7 +72,7 @@ export const resources = {
           url: 'https://www.figma.com/design/rZ0Z8Flij3HDskW68K7zpu/SkiDIY-%E5%AE%98%E7%B6%B2%E6%94%B9%E7%89%88?node-id=2119-2291',
         },
         {
-          name: '高保真 Mockup',
+          name: 'Mockup',
           url: 'https://www.figma.com/design/rZ0Z8Flij3HDskW68K7zpu/SkiDIY-%E5%AE%98%E7%B6%B2%E6%94%B9%E7%89%88?node-id=2119-14504',
         },
       ],
@@ -793,7 +793,7 @@ export const sections = [
         type: 'wireframes',
         eyebrow: '架構已完成、視覺尚未展開',
         heading: '兩頁只到 wireframe，但缺的是視覺，不是想法',
-        lede: '本階段高保真集中在決策主線（首頁、推薦結果、訂課交接）。以下兩頁的資訊架構已經定案，只是還沒進到視覺設計——把它們攤開，是為了說明範圍怎麼切，而不是把未完成的東西藏起來。',
+        lede: '本階段 Mockup 集中在決策主線（首頁、推薦結果、訂課交接）。以下兩頁的資訊架構已經定案，只是還沒進到視覺設計——把它們攤開，是為了說明範圍怎麼切，而不是把未完成的東西藏起來。',
         items: [
           {
             label: '地區頁',
@@ -880,14 +880,14 @@ export const sections = [
             no: '01',
             when: '緊接本階段',
             title: '把其餘 wireframe 頁面完成 mockup',
-            desc: '資訊架構已定案，缺的是視覺。將地區頁、雪場詳情、探索教練、教練詳情與滑雪攻略推進到高保真，讓整站語言一致。',
+            desc: '資訊架構已定案，缺的是視覺。將地區頁、雪場詳情、探索教練、教練詳情與滑雪攻略推進到 Mockup，讓整站語言一致。',
             items: [
               '地區頁、雪場詳情',
               '探索教練、教練詳情',
               '滑雪攻略與相關文章',
               '同步補齊各頁手機版',
             ],
-            done: '完成定義：所有官網頁面都有可交付的高保真稿，不再有只到 wireframe 的斷點。',
+            done: '完成定義：所有官網頁面都有可交付的 Mockup，不再有只到 wireframe 的斷點。',
           },
           {
             no: '02',

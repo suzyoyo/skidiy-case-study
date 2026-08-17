@@ -9,18 +9,18 @@ import { useEffect, useState } from 'react'
 export const PRESENTER_ENABLED = import.meta.env.VITE_PRESENTER === '1'
 
 export function usePresenterNotes() {
-  const [notes, setNotes] = useState(null)
+  const [data, setData] = useState({ notes: null, runOfShow: null })
 
   useEffect(() => {
     if (!PRESENTER_ENABLED) return
     let alive = true
     import('../data/presenterNotes').then((m) => {
-      if (alive) setNotes(m.presenterNotes)
+      if (alive) setData({ notes: m.presenterNotes, runOfShow: m.runOfShow })
     })
     return () => {
       alive = false
     }
   }, [])
 
-  return notes
+  return data
 }

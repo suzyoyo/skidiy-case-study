@@ -18,7 +18,7 @@ export default function App() {
   const progress = useScrollProgress()
   const activeId = useActiveSection(ids)
   const [presenterMode, setPresenterMode] = useState(false)
-  const notes = usePresenterNotes()
+  const { notes, runOfShow } = usePresenterNotes()
   useReveal()
 
   const activeSection = sections.find((s) => s.id === activeId) ?? sections[0]
@@ -90,6 +90,8 @@ export default function App() {
           open={presenterMode}
           section={activeSection}
           notes={notes?.[activeSection.id]}
+          runOfShow={runOfShow}
+          activeId={activeSection.id}
           onClose={closePresenter}
         />
       )}
