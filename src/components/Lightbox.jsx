@@ -11,12 +11,16 @@ export default function Lightbox({ src, alt, caption, onClose }) {
   useEffect(() => {
     const onKey = (e) => e.key === 'Escape' && onClose()
     window.addEventListener('keydown', onKey)
-    // 開啟時鎖住背景捲動，避免放大檢視與頁面同時滾動
-    const prev = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
+
+    // 鎖住背景捲動。這裡只改 overflow：先前試過 position: fixed 的做法，
+    // 但在 StrictMode 的雙重掛載下會把捲動位置記成 0，關閉後畫面會跳回頂端。
+    const body = document.body
+    const prev = body.style.overflow
+    body.style.overflow = 'hidden'
+
     return () => {
       window.removeEventListener('keydown', onKey)
-      document.body.style.overflow = prev
+      body.style.overflow = prev
     }
   }, [onClose])
 
@@ -52,14 +56,16 @@ export default function Lightbox({ src, alt, caption, onClose }) {
         </div>
       </div>
 
-      <div
-        onClick={(e) => e.stopPropagation()}
-        className="mx-auto w-full max-w-[1800px] flex-1 overflow-auto rounded-xl bg-white"
-      >
+      {/* 白底只加在圖片上，容器保持透明，
+          短圖才不會在下方留一大片空白 */}
+      <div className="flex min-h-0 flex-1 justify-center overflow-auto">
         <img
           src={src}
           alt={alt}
-          className={actualSize ? 'max-w-none' : 'w-full'}
+          onClick={(e) => e.stopPropagation()}
+          className={`h-fit rounded-xl bg-white ${
+            actualSize ? 'max-w-none' : 'w-full max-w-[1800px]'
+          }`}
         />
       </div>
 
