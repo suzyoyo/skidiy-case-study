@@ -1136,9 +1136,11 @@ function Validate({ block }) {
       <h3 className="mt-3 text-2xl font-black leading-tight text-ink md:text-3xl">
         {block.heading}
       </h3>
-      <p className="mt-3 max-w-prose leading-relaxed text-teal-muted">
-        {block.lede}
-      </p>
+      {block.lede && (
+        <p className="mt-3 max-w-prose leading-relaxed text-teal-muted">
+          {block.lede}
+        </p>
+      )}
       <ul className="mt-8 grid gap-5 sm:grid-cols-2">
         {block.items.map((i) => (
           <li key={i.q} className="flex gap-3 rounded-2xl bg-mist p-5">
@@ -1154,7 +1156,7 @@ function Validate({ block }) {
           </li>
         ))}
       </ul>
-      <Conclusion>{block.metrics}</Conclusion>
+      {block.metrics && <Conclusion>{block.metrics}</Conclusion>}
 
       {block.funnel && (
         <div className="mt-10">
