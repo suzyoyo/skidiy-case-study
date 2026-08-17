@@ -151,13 +151,18 @@ function Figure({ block }) {
         />
       )}
       {block.footnote && (
-        <p
-          className={`mt-5 text-sm leading-relaxed ${
-            dark ? 'text-sage' : 'text-teal-muted'
-          }`}
-        >
-          {block.footnote}
-        </p>
+        <div className="mt-5 space-y-2">
+          {[].concat(block.footnote).map((line) => (
+            <p
+              key={line}
+              className={`text-sm leading-relaxed ${
+                dark ? 'text-sage' : 'text-teal-muted'
+              }`}
+            >
+              {line}
+            </p>
+          ))}
+        </div>
       )}
     </Slab>
   )
