@@ -1,7 +1,12 @@
 import { useEffect, useState } from 'react'
+import { createPortal } from 'react-dom'
 
 /**
  * 點擊放大檢視。
+ *
+ * 一定要用 portal 掛到 body：頁面的淡入動畫（.reveal）帶有 transform，
+ * 而有 transform 的祖先會成為 position: fixed 的參考框，
+ * 直接就地渲染會讓遮罩偏移到畫面外。
  * 站上的圖多半在雙欄版面裡被縮到原始尺寸的三到五成，細節看不清楚；
  * 這裡預設先「符合寬度」讓人看全貌，需要時再切到「實際大小」逐處檢視。
  */
@@ -24,7 +29,7 @@ export default function Lightbox({ src, alt, caption, onClose }) {
     }
   }, [onClose])
 
-  return (
+  return createPortal(
     <div
       role="dialog"
       aria-modal="true"
@@ -72,6 +77,7 @@ export default function Lightbox({ src, alt, caption, onClose }) {
       <p className="mx-auto mt-2 shrink-0 text-xs text-teal-muted">
         點擊背景或按 Esc 關閉
       </p>
-    </div>
+    </div>,
+    document.body
   )
 }
