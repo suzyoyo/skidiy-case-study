@@ -527,7 +527,7 @@ export const sections = [
         ],
         segments: {
           label: '情境分群｜同一個 Persona，目的不同，資訊排序也應不同',
-          note: '單純用 Family／Solo／Pro 太粗；入口應先問「這次滑雪的主要目的是什麼？」',
+          note: '單純用 Family／Solo／Pro 太簡略；入口應先問「這次滑雪的主要目的是什麼？」',
           converged:
             '設計收斂｜研究列出的五類情境，在首頁 V2 收斂為四個意圖入口：新手入門、親子同遊、技術提升、休閒度假。',
           items: [
