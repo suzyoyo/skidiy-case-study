@@ -5,12 +5,13 @@ import Prototype from './Prototype'
 // 每個 block 都是一個獨立的敘事單元；深色 block 用 Slab 包起來做視覺分段。
 function Slab({ tone = 'light', children }) {
   const dark = tone === 'dark'
+  const toneClass = dark
+    ? 'bg-ink text-mist'
+    : tone === 'soft'
+      ? 'border border-teal/30 bg-sage/70 text-ink'
+      : 'bg-white/70 border border-sage/70'
   return (
-    <div
-      className={`rounded-3xl p-6 sm:p-10 ${
-        dark ? 'bg-ink text-mist' : 'bg-white/70 border border-sage/70'
-      }`}
-    >
+    <div className={`rounded-3xl p-6 sm:p-10 ${toneClass}`}>
       {children}
     </div>
   )
@@ -111,7 +112,7 @@ function Figure({ block }) {
       </h3>
       {block.lede && (
         <p
-          className={`mt-3 max-w-prose leading-relaxed ${
+          className={`mt-3 leading-relaxed ${
             dark ? 'text-sage' : 'text-teal-muted'
           }`}
         >
@@ -161,7 +162,7 @@ function Evidence({ block }) {
       <h3 className="text-2xl font-black leading-tight md:text-3xl">
         {block.caption}
       </h3>
-      <p className="mt-3 max-w-prose leading-relaxed text-sage">{block.lede}</p>
+      <p className="mt-3 leading-relaxed text-sage">{block.lede}</p>
 
       {block.site && (
         <a
@@ -257,7 +258,7 @@ function Usability({ block }) {
       <h3 className="mt-3 text-2xl font-black leading-tight md:text-3xl">
         {block.heading}
       </h3>
-      <p className="mt-3 max-w-prose leading-relaxed text-sage">{block.lede}</p>
+      <p className="mt-3 leading-relaxed text-sage">{block.lede}</p>
 
       <ul className="mt-6 flex flex-wrap gap-2">
         {block.priorities.map((p) => (
@@ -410,7 +411,7 @@ function Competitors({ block }) {
       <h3 className="mt-3 text-2xl font-black leading-tight text-ink md:text-3xl">
         {block.heading}
       </h3>
-      <p className="mt-3 max-w-prose leading-relaxed text-teal-muted">
+      <p className="mt-3 leading-relaxed text-teal-muted">
         {block.lede}
       </p>
       {block.scenario && (
@@ -578,7 +579,7 @@ function Persona({ block }) {
         {block.heading}
       </h3>
       {block.sub && (
-        <p className="mt-2 max-w-prose leading-relaxed text-teal-muted">
+        <p className="mt-2 leading-relaxed text-teal-muted">
           {block.sub}
         </p>
       )}
@@ -700,7 +701,7 @@ function IntentStrategy({ block }) {
       <h3 className="mt-3 text-2xl font-black leading-tight md:text-3xl">
         {block.heading}
       </h3>
-      <p className="mt-3 max-w-prose leading-relaxed text-sage">
+      <p className="mt-3 leading-relaxed text-sage">
         {block.lede}
       </p>
 
@@ -736,7 +737,8 @@ function IntentStrategy({ block }) {
         ))}
       </dl>
 
-      <div className="mt-8 grid gap-4 md:grid-cols-2">
+      <h4 className="mt-8 text-sm font-bold text-mist">應用頁面</h4>
+      <div className="mt-4 grid gap-4 md:grid-cols-2">
         {block.applications.map((item) => (
           <div key={item.title} className="border-l-4 border-teal pl-4">
             <h4 className="font-bold text-mist">{item.title}</h4>
@@ -768,7 +770,7 @@ function Scope({ block }) {
         {block.heading}
       </h3>
       {block.lede && (
-        <p className="mt-3 max-w-prose leading-relaxed text-teal-muted">
+        <p className="mt-3 leading-relaxed text-teal-muted">
           {block.lede}
         </p>
       )}
@@ -867,7 +869,7 @@ function SystemFlow({ block }) {
       <h3 className="mt-3 text-2xl font-black leading-tight md:text-3xl">
         {block.heading}
       </h3>
-      <p className="mt-3 max-w-prose leading-relaxed text-sage">{block.lede}</p>
+      <p className="mt-3 leading-relaxed text-sage">{block.lede}</p>
 
       <div className="mt-10 space-y-4">
         <Lane name={entries.name} role={entries.role}>
@@ -1033,7 +1035,7 @@ function Compare({ block }) {
       <h3 className="mt-3 text-2xl font-black leading-tight text-ink md:text-3xl">
         {block.heading}
       </h3>
-      <p className="mt-3 max-w-prose leading-relaxed text-teal-muted">
+      <p className="mt-3 leading-relaxed text-teal-muted">
         {block.lede}
       </p>
       {block.zoomHint && (
@@ -1087,7 +1089,7 @@ function CompareFeature({ block }) {
       <h3 className="mt-3 text-2xl font-black leading-tight md:text-3xl">
         {block.heading}
       </h3>
-      <p className="mt-3 max-w-prose leading-relaxed text-sage">{block.lede}</p>
+      <p className="mt-3 leading-relaxed text-sage">{block.lede}</p>
 
       <ol className="mt-10 grid gap-5 md:grid-cols-3">
         {block.steps.map((s) => (
@@ -1150,7 +1152,7 @@ function Wireframes({ block }) {
       <h3 className="mt-3 text-2xl font-black leading-tight text-ink md:text-3xl">
         {block.heading}
       </h3>
-      <p className="mt-3 max-w-prose leading-relaxed text-teal-muted">
+      <p className="mt-3 leading-relaxed text-teal-muted">
         {block.lede}
       </p>
 
@@ -1208,7 +1210,7 @@ function Validate({ block }) {
         {block.heading}
       </h3>
       {block.lede && (
-        <p className="mt-3 max-w-prose leading-relaxed text-teal-muted">
+        <p className="mt-3 leading-relaxed text-teal-muted">
           {block.lede}
         </p>
       )}
@@ -1287,7 +1289,7 @@ function Roadmap({ block }) {
 
             <div>
               <h4 className="text-lg font-bold text-ink">{p.title}</h4>
-              <p className="mt-2 max-w-prose text-sm leading-relaxed text-teal-muted">
+              <p className="mt-2 text-sm leading-relaxed text-teal-muted">
                 {p.desc}
               </p>
               <ul className="mt-4 grid gap-2 sm:grid-cols-2">
@@ -1354,12 +1356,12 @@ function ConclusionBlock({ block }) {
 /* ── 04 設計：AI 協作 ───────────────────────────────────── */
 function AiBlock({ block }) {
   return (
-    <Slab tone="dark">
-      <Eyebrow dark>{block.eyebrow}</Eyebrow>
+    <Slab tone="soft">
+      <Eyebrow>{block.eyebrow}</Eyebrow>
       <h3 className="mt-3 text-2xl font-black leading-tight md:text-3xl">
         {block.heading}
       </h3>
-      <p className="mt-3 max-w-prose leading-relaxed text-sage">{block.lede}</p>
+      <p className="mt-3 leading-relaxed text-teal-muted">{block.lede}</p>
       <ol className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {block.steps.map((s) => {
           // 三種角色各給一組配色，讓「誰做的」在版面上一眼可辨
@@ -1369,8 +1371,8 @@ function AiBlock({ block }) {
           ]
           const chip = {
             ai: 'bg-accent/20 text-accent',
-            me: 'bg-white/10 text-sage',
-            both: 'bg-white/10 text-mist',
+            me: 'bg-white/60 text-teal-deep',
+            both: 'bg-white/60 text-ink',
           }[role]
           return (
             <li key={s.no}>
@@ -1389,19 +1391,13 @@ function AiBlock({ block }) {
                 )}
               </div>
               <h4 className="mt-4 font-bold">{s.title}</h4>
-              <p className="mt-1 text-sm leading-relaxed text-sage">{s.desc}</p>
+              <p className="mt-1 text-sm leading-relaxed text-teal-muted">
+                {s.desc}
+              </p>
             </li>
           )
         })}
       </ol>
-      <dl className="mt-10 space-y-3 rounded-2xl bg-black/25 p-6 text-sm">
-        {block.scope.map((s) => (
-          <div key={s.label} className="flex flex-wrap gap-x-4 gap-y-1">
-            <dt className="font-bold text-accent">{s.label}</dt>
-            <dd className="text-sage">{s.text}</dd>
-          </div>
-        ))}
-      </dl>
     </Slab>
   )
 }

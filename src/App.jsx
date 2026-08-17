@@ -57,7 +57,7 @@ export default function App() {
                 <h2 className="mt-3 text-3xl font-black leading-tight text-ink md:text-5xl">
                   {section.title}
                 </h2>
-                <p className="mt-5 max-w-prose text-base leading-relaxed text-teal-muted md:text-lg">
+                <p className="mt-5 text-base leading-relaxed text-teal-muted md:text-lg">
                   {section.lede}
                 </p>
               </div>
@@ -204,7 +204,7 @@ function Hero() {
             />
           </div>
           <p className="mt-4 text-xl font-bold md:text-2xl">{meta.subtitle}</p>
-          <p className="mt-6 max-w-prose leading-relaxed text-sage">
+          <p className="mt-6 leading-relaxed text-sage">
             {meta.lede}
           </p>
         </div>
