@@ -163,6 +163,22 @@ function Evidence({ block }) {
       </h3>
       <p className="mt-3 max-w-prose leading-relaxed text-sage">{block.lede}</p>
 
+      {block.site && (
+        <a
+          href={block.site.url}
+          target="_blank"
+          rel="noreferrer noopener"
+          className="mt-5 inline-flex items-center gap-1.5 rounded-full border border-white/25 px-4 py-1.5 text-sm font-bold text-mist transition-colors hover:border-accent hover:text-accent"
+        >
+          {block.site.label}
+          <span className="font-normal text-sage">
+            {block.site.url.replace(/^https?:\/\//, '').replace(/\/$/, '')}
+          </span>
+          <span aria-hidden>↗</span>
+          <span className="sr-only">（另開新視窗）</span>
+        </a>
+      )}
+
       <div className="mt-10 grid gap-8 lg:grid-cols-2">
         {block.items.map((item) => (
           <figure key={item.label}>

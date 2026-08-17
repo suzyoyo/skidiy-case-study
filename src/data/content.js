@@ -158,8 +158,9 @@ export const sections = [
       },
       {
         type: 'evidence',
-        caption: '原網站資訊龐雜，用戶很難找資訊',
-        lede: '教練資訊、相關文章、雪場等內容頁面資訊長且密，未分類的呈現方式讓用戶容易迷失。',
+        caption: '原網站資訊龐雜，使用者很難找資訊',
+        lede: '教練資訊、相關文章、雪場等內容頁面資訊長且密，未分類的呈現方式讓使用者容易迷失。',
+        site: { label: '原網站', url: 'https://diy.ski/' },
         items: [
           {
             label: '教練團隊頁',
@@ -812,7 +813,6 @@ export const sections = [
         type: 'prototype',
         eyebrow: '互動原型',
         heading: '把前面拆解的三件事，連起來走一次',
-        lede: '前面逐段說明了推薦怎麼解釋、比較怎麼取捨、交接怎麼處理例外。這裡把它們接成一條路徑——靜態畫面證明每個狀態長什麼樣，原型才證明狀態之間怎麼銜接。',
         steps: ['首頁選目的', '推薦結果', '加入比較', '對照表', '訂課交接'],
         title: 'SKIDIY 官網改版互動原型',
         embed: 'https://embed.figma.com/proto/rZ0Z8Flij3HDskW68K7zpu/SkiDIY-%E5%AE%98%E7%B6%B2%E6%94%B9%E7%89%88?node-id=2866-6206&scaling=scale-down-width&content-scaling=fixed&page-id=2119%3A14504&starting-point-node-id=2866%3A6206&embed-host=share',
@@ -910,7 +910,7 @@ export const sections = [
             no: '01',
             when: '緊接本階段',
             title: '把其餘 wireframe 頁面完成 mockup',
-            desc: '資訊架構已定案，缺的是視覺。將地區頁、雪場詳情、探索教練、教練詳情與滑雪攻略推進到 Mockup，讓整站語言一致。',
+            desc: '資訊架構已初步收斂，缺的是視覺。將地區頁、雪場詳情、探索教練、教練詳情與滑雪攻略推進到 Mockup，讓整站語言一致。',
             items: [
               '地區頁、雪場詳情',
               '探索教練、教練詳情',
