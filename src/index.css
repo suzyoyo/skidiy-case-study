@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* 讓錨點跳轉不被 sticky nav 蓋住 */
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    @apply bg-mist text-ink font-sans antialiased;
+  }
+
+  ::selection {
+    @apply bg-accent text-white;
+  }
+}
+
+@layer components {
+  .section-shell {
+    @apply mx-auto w-full max-w-6xl px-6 md:px-10;
+  }
+
+  /* 進場動畫：內容預設可見，只有在 JS 掛上 observer 後才隱藏起來等淡入。
+     這樣 JS 失效、IntersectionObserver 沒觸發或被靜態渲染時，內容都還在。 */
+  .reveal {
+    @apply translate-y-0 opacity-100 transition-all duration-700 ease-out;
+  }
+
+  .reveal-ready .reveal {
+    @apply translate-y-4 opacity-0;
+  }
+
+  .reveal-ready .reveal.is-visible {
+    @apply translate-y-0 opacity-100;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal-ready .reveal {
+      @apply translate-y-0 opacity-100 transition-none;
+    }
+  }
+
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.2em] text-teal;
+  }
+
+  .card {
+    @apply rounded-2xl border border-sage/70 bg-white/80 p-6 shadow-sm backdrop-blur;
+  }
+}

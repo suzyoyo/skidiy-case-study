@@ -1,0 +1,16 @@
+node_modules
+dist
+dist-ssr
+*.local
+
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+.idea
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 本機開發才需要（會開啟報告備註）
+.env.development
