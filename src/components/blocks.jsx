@@ -403,9 +403,13 @@ function Competitors({ block }) {
         {block.lede}
       </p>
       {block.scenario && (
-        <p className="mt-5 rounded-xl bg-mist p-4 text-sm leading-relaxed text-teal-deep">
-          {block.scenario}
-        </p>
+        <div className="mt-5 space-y-1.5 rounded-xl bg-mist p-4">
+          {[].concat(block.scenario).map((line) => (
+            <p key={line} className="text-sm leading-relaxed text-teal-deep">
+              {line}
+            </p>
+          ))}
+        </div>
       )}
 
       <div className="mt-8 grid gap-4 sm:grid-cols-2">
