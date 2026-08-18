@@ -744,6 +744,19 @@ function Principles({ block }) {
 
 /* ── 04 設計：目的導向的跨頁資訊排序 ───────────────────── */
 function IntentStrategy({ block }) {
+  const [selectedIntent, setSelectedIntent] = useState(
+    block.priorities[0].intent
+  )
+  const activePriority = block.priorities.find(
+    (item) => item.intent === selectedIntent
+  )
+  const sortItems = Object.fromEntries(
+    block.sortDemo.items.map((item) => [item.id, item])
+  )
+  const sortedItems = block.sortDemo.orders[selectedIntent].map(
+    (id) => sortItems[id]
+  )
+
   return (
     <Slab tone="dark">
       <Eyebrow dark>{block.eyebrow}</Eyebrow>
@@ -775,16 +788,76 @@ function IntentStrategy({ block }) {
       <h4 className="mt-8 text-sm font-bold text-mist">
         四個目的的預設優先序
       </h4>
-      <dl className="mt-4 grid gap-3 sm:grid-cols-2">
+      <div className="mt-4 flex flex-wrap gap-2" role="tablist" aria-label="選擇使用目的">
         {block.priorities.map((item) => (
-          <div key={item.intent} className="rounded-xl bg-black/25 p-4">
-            <dt className="font-bold text-accent">{item.intent}</dt>
-            <dd className="mt-1 text-sm leading-relaxed text-sage">
-              {item.priority}
-            </dd>
-          </div>
+          <button
+            key={item.intent}
+            type="button"
+            role="tab"
+            aria-selected={selectedIntent === item.intent}
+            onClick={() => setSelectedIntent(item.intent)}
+            className={`rounded-full px-4 py-2 text-sm font-bold transition-colors ${
+              selectedIntent === item.intent
+                ? 'bg-accent text-white'
+                : 'bg-black/25 text-sage hover:bg-teal-deep hover:text-mist'
+            }`}
+          >
+            {item.intent}
+          </button>
         ))}
-      </dl>
+      </div>
+
+      <div className="mt-4 rounded-2xl border border-white/10 bg-black/25 p-5 md:p-6">
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <span className="text-xs font-bold uppercase tracking-[0.15em] text-accent">
+              {block.sortDemo.label}
+            </span>
+            <h4 className="mt-2 text-lg font-bold text-mist">
+              依「{selectedIntent}」重新排列
+            </h4>
+          </div>
+          <p className="text-sm text-sage">優先看：{activePriority.priority}</p>
+        </div>
+
+        <ol
+          key={selectedIntent}
+          className="intent-sort-grid mt-5 grid gap-2 sm:grid-cols-2 lg:grid-cols-3"
+        >
+          {sortedItems.map((item, index) => (
+            <li
+              key={item.id}
+              className={`flex min-h-20 items-start gap-3 rounded-xl border p-4 ${
+                index < 3
+                  ? 'border-accent/40 bg-teal-deep/80'
+                  : 'border-white/5 bg-black/20'
+              }`}
+            >
+              <span
+                className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-black ${
+                  index < 3
+                    ? 'bg-accent text-white'
+                    : 'bg-teal-deep text-sage'
+                }`}
+              >
+                {String(index + 1).padStart(2, '0')}
+              </span>
+              <span>
+                <strong className="block text-sm text-mist">{item.label}</strong>
+                <span className="mt-1 block text-xs leading-relaxed text-sage">
+                  {item.desc}
+                </span>
+              </span>
+            </li>
+          ))}
+        </ol>
+
+        <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 border-t border-white/10 pt-4 text-xs font-bold text-sage">
+          <span>✓ 頁面架構不變</span>
+          <span className="text-accent">↕ 只調整優先順序</span>
+          <span>✓ 所有內容仍可查看</span>
+        </div>
+      </div>
 
       <h4 className="mt-8 text-sm font-bold text-mist">應用頁面</h4>
       <div className="mt-4 grid gap-4 md:grid-cols-2">

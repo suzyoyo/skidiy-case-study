@@ -115,6 +115,21 @@
   }
 }
 
+@keyframes intent-sort-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.intent-sort-grid {
+  animation: intent-sort-in 0.32s ease-out both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .journey-progress-line,
   .journey-progress-overlay.is-active .journey-progress-line {
@@ -125,4 +140,9 @@
   .journey-progress-overlay.is-active .journey-progress-target {
     animation: none;
   }
+
+  .intent-sort-grid {
+    animation: none;
+  }
+
 }

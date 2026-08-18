@@ -765,6 +765,47 @@ export const sections = [
             priority: '交通、住宿、景觀與夜滑',
           },
         ],
+        sortDemo: {
+          label: '同一組內容，不同預設順序',
+          items: [
+            {
+              id: 'beginner',
+              label: '初學者友善',
+              desc: '學習門檻、坡度與初級雪道',
+            },
+            {
+              id: 'family',
+              label: '親子條件',
+              desc: '兒童限制、親子設施',
+            },
+            {
+              id: 'terrain',
+              label: '地形與雪質',
+              desc: '雪道難度、雪量與粉雪',
+            },
+            {
+              id: 'coach',
+              label: '教練資訊',
+              desc: '專長、語言與板類',
+            },
+            {
+              id: 'cost',
+              label: '裝備與費用',
+              desc: '租借、雪票與家庭成本',
+            },
+            {
+              id: 'stay',
+              label: '交通與住宿',
+              desc: '移動成本、住宿與夜滑',
+            },
+          ],
+          orders: {
+            新手入門: ['beginner', 'cost', 'coach', 'stay', 'family', 'terrain'],
+            親子同行: ['family', 'cost', 'stay', 'beginner', 'coach', 'terrain'],
+            技術提升: ['terrain', 'coach', 'beginner', 'cost', 'stay', 'family'],
+            休閒度假: ['stay', 'family', 'cost', 'terrain', 'beginner', 'coach'],
+          },
+        },
         applications: [
           {
             title: '雪場比較表',
