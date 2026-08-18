@@ -1,12 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
   <rect width="64" height="64" rx="14" fill="#092126"/>
-  <!-- 雙峰 -->
   <path d="M4 53 L25 19 L37 37 L45 26 L60 53 Z" fill="#1A7A80"/>
-  <!-- 主峰雪頂 -->
   <path d="M25 19 L19.4 28 L22 26.4 L25 29 L28 26.4 L30.9 27.9 Z" fill="#E3F7F7"/>
-  <!-- 次峰雪頂 -->
   <path d="M45 26 L40.6 32 L42.6 30.7 L45 32.6 L47 30.7 L48.3 32 Z" fill="#E3F7F7"/>
-  <!-- 滑行軌跡：收在主峰範圍內、置中、縮小 -->
-  <path d="M26.5 25 L22 31 L30 36 L25 43" fill="none" stroke="#F57030"
-        stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- 軌跡：四段轉折、由峰下延伸到山腳 -->
+  <path d="M27 24 L21.5 30 L30 35 L23 41 L31 47" fill="none" stroke="#F57030"
+        stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
