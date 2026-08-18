@@ -792,7 +792,7 @@ export const sections = [
         eyebrow: '推薦結果',
         caption: '結果頁不只給答案，也讓使用者理解與比較',
         lede: '推薦理由、接近選項、教練資訊與雪場比較，被放在同一個決策脈絡裡。',
-        src: '/img/page-results.jpg',
+        src: '/img/page-results.jpg?v=parent-order',
         width: 1275,
         height: 4096,
         alt: '推薦結果頁完整頁面：推薦雪場卡片、只差一項的選擇、也適合你的教練、比較雪場',
@@ -819,7 +819,7 @@ export const sections = [
           {
             no: '03',
             title: '一鍵展開逐項對照',
-            desc: '點「查看比較」進入 side by side，交通、雪質與雪量、初學者友善、親子設施、住宿、夜滑、雪票 CP 值逐項並列。',
+            desc: '點「查看比較」進入 side by side；以親子同行為目的時，依序呈現交通、親子設施、住宿選擇、初學者友善、雪票 CP 值、雪質與雪量、夜滑。',
           },
         ],
         figures: [
@@ -832,10 +832,10 @@ export const sections = [
           },
           {
             label: '逐項對照表',
-            src: '/img/compare-table.jpg',
-            width: 1460,
-            height: 1850,
-            alt: '比較雪場頁面：上方顯示依親子同行排序與修改入口；富良野 VS 留壽都，依交通、雪質與雪量、初學者友善、親子設施、住宿選擇、夜滑、雪票 CP 值逐項並列，底部為兩個預約課程按鈕',
+            src: '/img/compare-table.jpg?v=parent-order',
+            width: 956,
+            height: 1166,
+            alt: '比較雪場頁面：上方顯示依親子同行排序與修改入口；富良野 VS 留壽都，依交通、親子設施、住宿選擇、初學者友善、雪票 CP 值、雪質與雪量、夜滑逐項並列，底部為兩個預約課程按鈕',
             scroll: 560,
             note: '上方明示「依親子同行排序｜修改」；捲到底可直接選擇「預約富良野課程／預約留壽都課程」。',
           },
