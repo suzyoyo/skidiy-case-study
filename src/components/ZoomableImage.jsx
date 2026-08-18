@@ -18,6 +18,7 @@ export default function ZoomableImage({
   scroll,
   className = '',
   frame = 'border border-sage bg-white',
+  overlay,
 }) {
   const [open, setOpen] = useState(false)
   const url = asset(src)
@@ -40,6 +41,7 @@ export default function ZoomableImage({
           <div style={{ height: scroll }} className="overflow-y-auto">
             {img}
           </div>
+          {overlay}
           <button
             type="button"
             onClick={() => setOpen(true)}
@@ -56,6 +58,7 @@ export default function ZoomableImage({
           className={`group relative block w-full overflow-hidden rounded-2xl ${frame}`}
         >
           {img}
+          {overlay}
           <span className="absolute bottom-3 right-3 rounded-full bg-ink/85 px-3 py-1.5 text-xs font-bold text-mist opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
             點擊放大 ⤢
           </span>

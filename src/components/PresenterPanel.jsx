@@ -12,7 +12,8 @@ export default function PresenterPanel({
   activeId,
   onClose,
 }) {
-  const [showPlan, setShowPlan] = useState(true)
+  // 預設收合：報告當下要看的是章節備註，時間表需要時才展開
+  const [showPlan, setShowPlan] = useState(false)
   useEffect(() => {
     if (!open) return
     const onKey = (e) => e.key === 'Escape' && onClose()
@@ -62,6 +63,22 @@ export default function PresenterPanel({
               {showPlan ? '收合 ▲' : '展開 ▼'}
             </span>
           </button>
+
+          {!showPlan &&
+            (() => {
+              const now = runOfShow.cues.find((c) => c.id === activeId)
+              return now ? (
+                <p className="mt-2 flex items-baseline gap-2 text-xs text-sage">
+                  <span className="font-bold tabular-nums text-teal">
+                    {now.at}
+                  </span>
+                  {now.label}
+                  <span className="tabular-nums text-teal-muted">
+                    · {now.mins}′
+                  </span>
+                </p>
+              ) : null
+            })()}
 
           {showPlan && (
             <div className="mt-4 space-y-5">

@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react'
 import RequirementTabs from './RequirementTabs'
 import ZoomableImage from './ZoomableImage'
 import Prototype from './Prototype'
@@ -98,6 +99,61 @@ function ProblemPath({ block }) {
 }
 
 /* ── 通用：圖片區塊 ─────────────────────────────────────── */
+function JourneyProgressOverlay() {
+  const ref = useRef(null)
+  const [active, setActive] = useState(false)
+
+  useEffect(() => {
+    const node = ref.current
+    if (!node) return
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setActive(true)
+      return
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setActive(true)
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.5, rootMargin: '0px 0px -12% 0px' }
+    )
+
+    observer.observe(node)
+    return () => observer.disconnect()
+  }, [])
+
+  return (
+    <span
+      ref={ref}
+      aria-hidden
+      className={`journey-progress-overlay pointer-events-none absolute inset-0 ${
+        active ? 'is-active' : ''
+      }`}
+    >
+      <svg
+        className="journey-progress-track absolute inset-0 h-full w-full"
+        viewBox="0 0 1840 540"
+        preserveAspectRatio="none"
+      >
+        <line x1="106" y1="205" x2="1603" y2="205" className="journey-track-mask" />
+        <line x1="106" y1="209.5" x2="1603" y2="209.5" className="journey-track-base" />
+        {[106, 391, 676].map((cx) => (
+          <circle key={cx} cx={cx} cy="209.5" r="26" className="journey-track-dot journey-track-dot-active" />
+        ))}
+        {[961, 1283, 1603].map((cx) => (
+          <circle key={cx} cx={cx} cy="209.5" r="26" className="journey-track-dot journey-track-dot-inactive" />
+        ))}
+      </svg>
+      <span className="journey-progress-line absolute" />
+      <span className="journey-progress-target absolute" />
+    </span>
+  )
+}
+
 function Figure({ block }) {
   const dark = block.tone === 'dark'
   return (
@@ -135,6 +191,11 @@ function Figure({ block }) {
           caption={block.caption}
           scroll={block.scroll}
           frame={dark ? 'bg-white' : 'border border-sage bg-white'}
+          overlay={
+            block.animation === 'journey-progress' ? (
+              <JourneyProgressOverlay />
+            ) : null
+          }
         />
       </div>
       {block.footnote && (
@@ -226,23 +287,6 @@ function Methods({ block }) {
           <span className="mt-1 text-xs text-sage">{block.center.sub}</span>
         </div>
       </div>
-      {block.severity && (
-        <div className="mt-8 flex flex-wrap items-center gap-3 rounded-xl border border-sage bg-white/60 p-4">
-          <span className="text-xs font-bold uppercase tracking-[0.15em] text-teal">
-            {block.severity.label}
-          </span>
-          {block.severity.scale.map((s, i) => (
-            <span
-              key={s}
-              className={`rounded-full px-2.5 py-1 text-xs font-semibold ${
-                i >= 3 ? 'bg-accent/15 text-accent' : 'bg-mist text-teal-muted'
-              }`}
-            >
-              {s}
-            </span>
-          ))}
-        </div>
-      )}
       <p className="mt-4 rounded-xl bg-mist p-4 text-sm leading-relaxed text-teal-deep">
         {block.limit}
       </p>
