@@ -729,6 +729,11 @@ function Principles({ block }) {
             </span>
             <h4 className="mt-4 text-lg font-bold">{p.title}</h4>
             <p className="mt-2 text-sm leading-relaxed text-sage">{p.desc}</p>
+            {p.answers && (
+              <p className="mt-4 border-t border-white/10 pt-3 text-xs font-bold text-accent">
+                {p.answers}
+              </p>
+            )}
           </li>
         ))}
       </ol>
